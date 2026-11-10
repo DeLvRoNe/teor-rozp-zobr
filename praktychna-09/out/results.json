@@ -1,0 +1,93 @@
+{
+  "source": "data/test_face_video.avi",
+  "source_type": "video",
+  "opencv_version": "5.0.0",
+  "parameters": {
+    "detector": {
+      "implementation": "cv2.FaceDetectorYN (YuNet 2023mar)",
+      "model": "models/face_detection_yunet_2023mar.onnx",
+      "score_threshold": 0.85,
+      "nms_threshold": 0.3,
+      "top_k": 5000
+    },
+    "features": {
+      "method": "Shi-Tomasi (cv2.goodFeaturesToTrack)",
+      "max_corners": 100,
+      "quality_level": 0.01,
+      "min_distance": 7,
+      "block_size": 7,
+      "fallback_quality_level": 0.005,
+      "fallback_min_distance": 5
+    },
+    "klt": {
+      "method": "cv2.calcOpticalFlowPyrLK",
+      "win_size": [
+        21,
+        21
+      ],
+      "max_level": 3,
+      "max_iterations": 30,
+      "epsilon": 0.01,
+      "bidirectional_error_px": 2.0
+    },
+    "transform": {
+      "model": "similarity",
+      "method": "RANSAC (cv2.estimateAffinePartial2D)",
+      "max_distance_px": 4.0,
+      "max_iters": 2000,
+      "confidence": 0.995,
+      "refine_iters": 10
+    },
+    "max_frames": 60
+  },
+  "video": {
+    "width": 640,
+    "height": 480,
+    "fps": 20.0,
+    "reported_frame_count": 60,
+    "codec": "MJPG"
+  },
+  "frames": {
+    "expected": 60,
+    "processed": 60,
+    "successful_transforms": 59,
+    "failed_transforms": 0,
+    "output_video_frames": 60
+  },
+  "detection": {
+    "initial_frame_index": 0,
+    "initial_bbox": [
+      248.67,
+      71.734,
+      83.064,
+      103.246
+    ],
+    "initial_score": 0.9374,
+    "initial_feature_count": 63,
+    "face_detections_total": 1
+  },
+  "tracking": {
+    "attempted_frames": 59,
+    "successful_frames": 59,
+    "failed_frames": 0,
+    "success_rate": 1.0,
+    "min_visible_points": 63,
+    "max_visible_points": 63,
+    "mean_visible_points": 63.0,
+    "min_inliers": 63,
+    "max_inliers": 63,
+    "mean_inliers": 63.0,
+    "feature_redetections": 0,
+    "face_redetections": 0,
+    "bidirectional_rejected_points": 0,
+    "frames_without_points": 0
+  },
+  "outputs": {
+    "video": "out/tracked_face.avi",
+    "initial_frame": "out/frame_initial.png",
+    "middle_frame": "out/frame_middle.png",
+    "final_frame": "out/frame_final.png",
+    "summary_figure": "out/tracking_summary.png",
+    "results": "out/results.json"
+  }
+}

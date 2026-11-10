@@ -1,0 +1,398 @@
+{
+  "title": "Практична робота 5. Перетворення Фур'є для обробки зображення",
+  "parameters": {
+    "seed": 20241105,
+    "noise_sigma": 20.0,
+    "design_size": 31,
+    "cutoff": 0.2,
+    "custom_inner": 0.14,
+    "custom_outer": 0.3,
+    "noise_inner": 0.1,
+    "noise_outer": 0.24,
+    "padding": "reflect",
+    "padded_shape": [
+      1024,
+      1024
+    ]
+  },
+  "input": {
+    "path": "data/input.png",
+    "stats": {
+      "shape": [
+        512,
+        512
+      ],
+      "min": 0.0,
+      "max": 230.0,
+      "mean": 114.95041275024414,
+      "std": 72.61808626854324
+    }
+  },
+  "fft": {
+    "dc_value": 30133561.0,
+    "pixel_sum": 30133561.0,
+    "roundtrip_max_abs_error": 1.1368683772161603e-13,
+    "log_magnitude_min": 0.27133921096141245,
+    "log_magnitude_max": 17.221150125161078,
+    "spectrum_image": "out/images/spectrum_log_magnitude.png"
+  },
+  "freqspace": {
+    "even_example": [
+      -1.0,
+      -0.5,
+      0.0,
+      0.5
+    ],
+    "odd_example": [
+      -0.8,
+      -0.4,
+      0.0,
+      0.40000000000000013,
+      0.8
+    ],
+    "whole_example": [
+      0.0,
+      0.5,
+      1.0,
+      1.5
+    ]
+  },
+  "kernels": {
+    "fsamp2": {
+      "shape": [
+        31,
+        31
+      ],
+      "sum": 0.9999999999999997,
+      "min": -0.003994067414332782,
+      "max": 0.03017689906347554,
+      "window": "прямокутне (не застосовується)",
+      "response": {
+        "dc_gain": 0.9999999999999997,
+        "max": 1.2744930678664725,
+        "min": -0.35479003327290143,
+        "overshoot": 0.27449306786647254,
+        "undershoot": -0.35479003327290143,
+        "passband_mean": 0.9071367471133103,
+        "stopband_max_abs": 0.07456034190434804,
+        "stopband_attenuation_db": -22.54984218292291
+      }
+    },
+    "fwind1": {
+      "shape": [
+        31,
+        31
+      ],
+      "sum": 1.0,
+      "min": -0.001957110641198649,
+      "max": 0.03014231242461089,
+      "window": "хеммінга 1D ⊗ хеммінга 1D",
+      "response": {
+        "dc_gain": 1.0,
+        "max": 1.0042421551162093,
+        "min": -0.0035226495672223412,
+        "overshoot": 0.00424215511620929,
+        "undershoot": -0.0035226495672223412,
+        "passband_mean": 0.7908186049082195,
+        "stopband_max_abs": 0.0035226495672223412,
+        "stopband_attenuation_db": -49.062611164710866
+      }
+    },
+    "fwind2": {
+      "shape": [
+        31,
+        31
+      ],
+      "sum": 0.9999999999999999,
+      "min": -0.0017412733328513253,
+      "max": 0.03030185211045532,
+      "window": "радіальне ханна (несепарабельне)",
+      "response": {
+        "dc_gain": 0.9999999999999999,
+        "max": 1.0142570979109402,
+        "min": -0.011428204139278654,
+        "overshoot": 0.014257097910940209,
+        "undershoot": -0.011428204139278654,
+        "passband_mean": 0.7839215928882699,
+        "stopband_max_abs": 0.0011160350414985297,
+        "stopband_attenuation_db": -59.046443382332015
+      }
+    }
+  },
+  "custom_filter": {
+    "type": "круговий нч-фільтр із косинусним переходом",
+    "inner": 0.14,
+    "outer": 0.3,
+    "response": {
+      "dc_gain": 1.0,
+      "max": 1.0,
+      "min": 0.0,
+      "overshoot": 0.0,
+      "undershoot": 0.0,
+      "passband_mean": 0.9402715576938028,
+      "stopband_max_abs": 0.0,
+      "stopband_attenuation_db": -300.0
+    },
+    "output_image": "out/images/filtered_custom.png",
+    "metrics_vs_input": {
+      "mse": 1.9391288757324219,
+      "psnr": 45.25473687343872,
+      "ssim": 0.9894010841839206,
+      "gradient_correlation": 0.6873159026995167,
+      "strong_edge_correlation": 0.7933891286249367,
+      "gradient_energy_ratio": 0.3616625090694551,
+      "highpass_energy": 0.41266068882357304,
+      "laplacian_energy": 1.1293716430664062,
+      "highpass_energy_ratio": 0.20059774428719065,
+      "laplacian_energy_ratio": 0.13961391112108756
+    }
+  },
+  "filters": {
+    "fsamp2": {
+      "label": "fsamp2",
+      "type": "linear frequency-domain",
+      "output_image": "out/images/filtered_fsamp2.png",
+      "metrics_vs_input": {
+        "mse": 2.4095230102539062,
+        "psnr": 44.31149282823095,
+        "ssim": 0.9863215226507402,
+        "gradient_correlation": 0.6249187177024212,
+        "strong_edge_correlation": 0.7495653280287429,
+        "gradient_energy_ratio": 0.37381167428647866,
+        "highpass_energy": 0.4307087979399162,
+        "laplacian_energy": 1.1623992919921875,
+        "highpass_energy_ratio": 0.20937107810706262,
+        "laplacian_energy_ratio": 0.14369681799233028
+      },
+      "response": {
+        "dc_gain": 0.9999999999999997,
+        "max": 1.2744930678664725,
+        "min": -0.35479003327290143,
+        "overshoot": 0.27449306786647254,
+        "undershoot": -0.35479003327290143,
+        "passband_mean": 0.9071367471133103,
+        "stopband_max_abs": 0.07456034190434804,
+        "stopband_attenuation_db": -22.54984218292291
+      }
+    },
+    "fwind1": {
+      "label": "fwind1",
+      "type": "linear frequency-domain",
+      "output_image": "out/images/filtered_fwind1.png",
+      "metrics_vs_input": {
+        "mse": 2.2741432189941406,
+        "psnr": 44.5626254903851,
+        "ssim": 0.9879046574010235,
+        "gradient_correlation": 0.6535710054520005,
+        "strong_edge_correlation": 0.7701810087671932,
+        "gradient_energy_ratio": 0.27848616358943556,
+        "highpass_energy": 0.27328531268669076,
+        "laplacian_energy": 1.0464706420898438,
+        "highpass_energy_ratio": 0.13284623119312292,
+        "laplacian_energy_ratio": 0.12936561681225797
+      },
+      "response": {
+        "dc_gain": 1.0,
+        "max": 1.0042421551162093,
+        "min": -0.0035226495672223412,
+        "overshoot": 0.00424215511620929,
+        "undershoot": -0.0035226495672223412,
+        "passband_mean": 0.7908186049082195,
+        "stopband_max_abs": 0.0035226495672223412,
+        "stopband_attenuation_db": -49.062611164710866
+      }
+    },
+    "fwind2": {
+      "label": "fwind2",
+      "type": "linear frequency-domain",
+      "output_image": "out/images/filtered_fwind2.png",
+      "metrics_vs_input": {
+        "mse": 2.2797698974609375,
+        "psnr": 44.55189346019218,
+        "ssim": 0.9879250400881825,
+        "gradient_correlation": 0.6548319806261991,
+        "strong_edge_correlation": 0.7720806979846366,
+        "gradient_energy_ratio": 0.27451382461721824,
+        "highpass_energy": 0.26669394979427585,
+        "laplacian_energy": 1.0432357788085938,
+        "highpass_energy_ratio": 0.12964211564781586,
+        "laplacian_energy_ratio": 0.12896572018176433
+      },
+      "response": {
+        "dc_gain": 0.9999999999999999,
+        "max": 1.0142570979109402,
+        "min": -0.011428204139278654,
+        "overshoot": 0.014257097910940209,
+        "undershoot": -0.011428204139278654,
+        "passband_mean": 0.7839215928882699,
+        "stopband_max_abs": 0.0011160350414985297,
+        "stopband_attenuation_db": -59.046443382332015
+      }
+    },
+    "custom": {
+      "label": "власний плавний НЧ",
+      "type": "linear frequency-domain",
+      "output_image": "out/images/filtered_custom.png",
+      "metrics_vs_input": {
+        "mse": 1.9391288757324219,
+        "psnr": 45.25473687343872,
+        "ssim": 0.9894010841839206,
+        "gradient_correlation": 0.6873159026995167,
+        "strong_edge_correlation": 0.7933891286249367,
+        "gradient_energy_ratio": 0.3616625090694551,
+        "highpass_energy": 0.41266068882357304,
+        "laplacian_energy": 1.1293716430664062,
+        "highpass_energy_ratio": 0.20059774428719065,
+        "laplacian_energy_ratio": 0.13961391112108756
+      },
+      "response": {
+        "dc_gain": 1.0,
+        "max": 1.0,
+        "min": 0.0,
+        "overshoot": 0.0,
+        "undershoot": 0.0,
+        "passband_mean": 0.9402715576938028,
+        "stopband_max_abs": 0.0,
+        "stopband_attenuation_db": -300.0
+      }
+    }
+  },
+  "padding_effect": {
+    "zero": {
+      "psnr": 35.970246306472475,
+      "ssim": 0.9740855967748167
+    },
+    "reflect": {
+      "psnr": 45.25473687343872,
+      "ssim": 0.9894010841839206
+    }
+  },
+  "noise_experiment": {
+    "seed": 20241105,
+    "sigma": 20.0,
+    "noise_model": "адитивний гауссів шум, обрізання до 0...255",
+    "noisy": {
+      "image": "out/images/noisy_gaussian.png",
+      "metrics_vs_clean": {
+        "mse": 369.5879020690918,
+        "psnr": 22.453626140953475,
+        "ssim": 0.15332662574501357,
+        "gradient_correlation": 0.11332563491445373,
+        "strong_edge_correlation": 0.25803224142552356,
+        "gradient_energy_ratio": 62.35797087298492,
+        "highpass_energy": 346.532285955012,
+        "laplacian_energy": 7324.206954956055,
+        "highpass_energy_ratio": 168.45218545878654,
+        "laplacian_energy_ratio": 905.4248750794605
+      }
+    },
+    "filters": {
+      "linear_frequency": {
+        "type": "linear",
+        "label": "лінійний частотний НЧ",
+        "parameters": {
+          "inner_cutoff": 0.1,
+          "outer_cutoff": 0.24,
+          "padding": "reflect"
+        },
+        "image": "out/images/denoised_linear_freq.png",
+        "metrics_vs_clean": {
+          "mse": 12.807537078857422,
+          "psnr": 37.05614739000003,
+          "ssim": 0.9241633146798681,
+          "gradient_correlation": 0.3627200970153895,
+          "strong_edge_correlation": 0.6023521058777823,
+          "gradient_energy_ratio": 0.5965302913158368,
+          "highpass_energy": 0.645224946939934,
+          "laplacian_energy": 1.8738250732421875,
+          "highpass_energy_ratio": 0.31364913697730296,
+          "laplacian_energy_ratio": 0.23164389582315514,
+          "psnr_gain_vs_noisy": 14.602521249046553,
+          "ssim_gain_vs_noisy": 0.7708366889348546
+        }
+      },
+      "median": {
+        "type": "nonlinear",
+        "label": "медіанний 5×5",
+        "parameters": {
+          "size": 5,
+          "boundary": "nearest"
+        },
+        "image": "out/images/denoised_median.png",
+        "metrics_vs_clean": {
+          "mse": 25.73889923095703,
+          "psnr": 34.02490391265493,
+          "ssim": 0.7722395473540032,
+          "gradient_correlation": 0.22574448789785906,
+          "strong_edge_correlation": 0.49419859070052163,
+          "gradient_energy_ratio": 4.257472864413599,
+          "highpass_energy": 11.08384766429993,
+          "laplacian_energy": 79.4529037475586,
+          "highpass_energy_ratio": 5.3879492272935945,
+          "laplacian_energy_ratio": 9.822037511058463,
+          "psnr_gain_vs_noisy": 11.571277771701453,
+          "ssim_gain_vs_noisy": 0.6189129216089897
+        }
+      },
+      "bilateral": {
+        "type": "nonlinear",
+        "label": "білатеральний",
+        "parameters": {
+          "win_size": 5,
+          "sigma_color": 0.12,
+          "sigma_spatial": 2.0,
+          "mode": "edge"
+        },
+        "image": "out/images/denoised_bilateral.png",
+        "metrics_vs_clean": {
+          "mse": 50.90264892578125,
+          "psnr": 31.063399776683617,
+          "ssim": 0.5921449682497459,
+          "gradient_correlation": 0.2755873182799458,
+          "strong_edge_correlation": 0.5580582786038756,
+          "gradient_energy_ratio": 7.300926138910531,
+          "highpass_energy": 36.41321901692781,
+          "laplacian_energy": 690.4562530517578,
+          "highpass_energy_ratio": 17.700764320087792,
+          "laplacian_energy_ratio": 85.35480639910061,
+          "psnr_gain_vs_noisy": 8.609773635730143,
+          "ssim_gain_vs_noisy": 0.4388183425047324
+        }
+      }
+    },
+    "best": {
+      "psnr": "linear_frequency",
+      "psnr_value": 37.05614739000003,
+      "ssim": "linear_frequency",
+      "ssim_value": 0.9241633146798681
+    }
+  },
+  "outputs": {
+    "figures": [
+      "out/fig01_input_image.png",
+      "out/fig02_spectrum.png",
+      "out/fig03_desired_response.png",
+      "out/fig04_kernels.png",
+      "out/fig05_filter_responses.png",
+      "out/fig06_filtered_images.png",
+      "out/fig07_noisy_comparison.png",
+      "out/fig08_metrics_summary.png",
+      "out/fig09_radial_spectra.png"
+    ],
+    "images": [
+      "out/images/denoised_bilateral.png",
+      "out/images/denoised_linear_freq.png",
+      "out/images/denoised_median.png",
+      "out/images/filtered_custom.png",
+      "out/images/filtered_fsamp2.png",
+      "out/images/filtered_fwind1.png",
+      "out/images/filtered_fwind2.png",
+      "out/images/input_gray.png",
+      "out/images/noisy_gaussian.png",
+      "out/images/spectrum_log_magnitude.png"
+    ],
+    "files": [
+      "out/results.json"
+    ]
+  }
+}

@@ -1,0 +1,253 @@
+{
+  "work": "praktychna-07",
+  "title": "Практична робота 7. Оброблення кольорових зображень",
+  "input": {
+    "path": "data/input.png",
+    "height": 361,
+    "width": 574,
+    "channel_means": {
+      "R": 106.45094,
+      "G": 106.525925,
+      "B": 106.42362
+    },
+    "stats": {
+      "mean_levels": 106.466828,
+      "std_levels": 47.339498,
+      "entropy_bits": 7.102599,
+      "luminance_mean": 0.417657,
+      "luminance_std": 0.168498,
+      "local_contrast_levels": 26.531827,
+      "colorfulness": 56.358905
+    }
+  },
+  "parameters": {
+    "histeq_bins": 256,
+    "task2_imadjust": {
+      "low_in": 0.02,
+      "high_in": 0.68,
+      "gamma": 0.7,
+      "low_out": 0.0,
+      "high_out": 1.0
+    },
+    "task3": {
+      "l_percentiles": [
+        1.0,
+        99.0
+      ],
+      "imadjust": {
+        "low_in": 0.09263234285789426,
+        "high_in": 0.9339831325529189,
+        "gamma": 1.0,
+        "low_out": 0.0,
+        "high_out": 1.0
+      },
+      "histeq": {
+        "bins": 256
+      },
+      "clahe": {
+        "kernel_size": [
+          45,
+          71
+        ],
+        "clip_limit": 0.02,
+        "bins": 256
+      }
+    },
+    "local_contrast_window": 9,
+    "hue_saturation_threshold": 0.15
+  },
+  "task1": {
+    "channel_mean_spread_input": 0.102305,
+    "channel_mean_spread_result": 0.034872,
+    "hue_shift_per_channel": {
+      "mean_deg": 0.30975,
+      "max_deg": 30.0,
+      "pixels": 27521
+    },
+    "hue_shift_hsv_v": {
+      "mean_deg": 0.0,
+      "max_deg": 0.0,
+      "pixels": 29118
+    },
+    "saturation_mean_input": 0.113567,
+    "saturation_mean_per_channel": 0.102413,
+    "saturation_mean_hsv_v": 0.113379
+  },
+  "task2": {
+    "v_channel": {
+      "mean_before": 0.45607,
+      "mean_after": 0.700172,
+      "std_before": 0.210828,
+      "std_after": 0.175671,
+      "p01_before": 0.105882,
+      "p99_before": 1.0,
+      "p01_after": 0.239216,
+      "p99_after": 1.0
+    },
+    "clipped_low_fraction": 6.3e-05,
+    "clipped_high_fraction": 0.144025,
+    "hue_shift": {
+      "mean_deg": 0.0,
+      "max_deg": 0.0,
+      "pixels": 29157
+    },
+    "saturation_mean_before": 0.113567,
+    "saturation_mean_after": 0.113567,
+    "luminance_mean_before": 0.417657,
+    "luminance_mean_after": 0.655566,
+    "luminance_std_before": 0.168498,
+    "luminance_std_after": 0.178888
+  },
+  "task3": {
+    "l_percentiles": {
+      "p01": 0.092632,
+      "p99": 0.933983
+    },
+    "method_comparison": [
+      {
+        "method": "imadjust",
+        "l_mean": 42.858671,
+        "l_std": 20.101161,
+        "std_levels": 52.52778,
+        "entropy_bits": 7.103377,
+        "local_contrast_levels": 29.519144,
+        "ssim": 0.96942
+      },
+      {
+        "method": "histeq",
+        "l_mean": 50.502624,
+        "l_std": 28.828307,
+        "std_levels": 71.313949,
+        "entropy_bits": 7.011986,
+        "local_contrast_levels": 36.735222,
+        "ssim": 0.773466
+      },
+      {
+        "method": "CLAHE",
+        "l_mean": 46.890105,
+        "l_std": 20.26907,
+        "std_levels": 52.148536,
+        "entropy_bits": 7.523867,
+        "local_contrast_levels": 32.756951,
+        "ssim": 0.902976
+      }
+    ]
+  },
+  "images": {
+    "per_channel_histeq": {
+      "path": "out/task1_per_channel_histeq.png",
+      "stats": {
+        "mean_levels": 128.743397,
+        "std_levels": 73.684734,
+        "entropy_bits": 6.958812,
+        "luminance_mean": 0.504918,
+        "luminance_std": 0.277023,
+        "local_contrast_levels": 32.489756,
+        "colorfulness": 59.314195
+      },
+      "compare": {
+        "mse": 1994.077467,
+        "psnr_db": 15.133383,
+        "ssim": 0.844149
+      }
+    },
+    "hsv_v_histeq": {
+      "path": "out/task1_hsv_v_histeq.png",
+      "stats": {
+        "mean_levels": 119.034248,
+        "std_levels": 71.410711,
+        "entropy_bits": 6.971386,
+        "luminance_mean": 0.466983,
+        "luminance_std": 0.267148,
+        "local_contrast_levels": 33.056282,
+        "colorfulness": 60.648017
+      },
+      "compare": {
+        "mse": 1468.251235,
+        "psnr_db": 16.4628,
+        "ssim": 0.814564
+      }
+    },
+    "hsv_contrast": {
+      "path": "out/task2_hsv_imadjust.png",
+      "stats": {
+        "mean_levels": 167.129464,
+        "std_levels": 51.663113,
+        "entropy_bits": 6.801253,
+        "luminance_mean": 0.655566,
+        "luminance_std": 0.178888,
+        "local_contrast_levels": 28.492896,
+        "colorfulness": 68.498867
+      },
+      "compare": {
+        "mse": 4181.564322,
+        "psnr_db": 11.917416,
+        "ssim": 0.694927
+      }
+    },
+    "lab_imadjust": {
+      "path": "out/task3_lab_imadjust.png",
+      "stats": {
+        "mean_levels": 101.002907,
+        "std_levels": 52.52778,
+        "entropy_bits": 7.103377,
+        "luminance_mean": 0.395884,
+        "luminance_std": 0.193759,
+        "local_contrast_levels": 29.519144,
+        "colorfulness": 52.694971
+      },
+      "compare": {
+        "mse": 89.484129,
+        "psnr_db": 28.613343,
+        "ssim": 0.96942
+      }
+    },
+    "lab_histeq": {
+      "path": "out/task3_lab_histeq.png",
+      "stats": {
+        "mean_levels": 121.602574,
+        "std_levels": 71.313949,
+        "entropy_bits": 7.011986,
+        "luminance_mean": 0.478602,
+        "luminance_std": 0.27519,
+        "local_contrast_levels": 36.735222,
+        "colorfulness": 42.178049
+      },
+      "compare": {
+        "mse": 1545.551914,
+        "psnr_db": 16.239968,
+        "ssim": 0.773466
+      }
+    },
+    "lab_clahe": {
+      "path": "out/task3_lab_clahe.png",
+      "stats": {
+        "mean_levels": 110.872328,
+        "std_levels": 52.148536,
+        "entropy_bits": 7.523867,
+        "luminance_mean": 0.435673,
+        "luminance_std": 0.194536,
+        "local_contrast_levels": 32.756951,
+        "colorfulness": 47.788222
+      },
+      "compare": {
+        "mse": 452.454805,
+        "psnr_db": 21.575052,
+        "ssim": 0.902976
+      }
+    }
+  },
+  "figures": {
+    "task1_result": "out/fig01_task1_result.png",
+    "task1_channels": "out/fig02_task1_channels.png",
+    "task1_histograms": "out/fig03_task1_histograms.png",
+    "task1_color_shift": "out/fig04_task1_color_shift.png",
+    "task2_channels": "out/fig05_task2_channels.png",
+    "task2_histograms": "out/fig06_task2_histograms.png",
+    "task2_result": "out/fig07_task2_result.png",
+    "task3_channels": "out/fig08_task3_lab_channels.png",
+    "task3_results": "out/fig09_task3_results.png",
+    "task3_l_histograms": "out/fig10_task3_l_histograms.png",
+    "task3_local_contrast": "out/fig11_task3_local_contrast.png"
+  }
+}

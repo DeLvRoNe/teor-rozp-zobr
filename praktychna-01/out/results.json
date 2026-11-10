@@ -1,0 +1,59 @@
+{
+  "image_path": "data/input.png",
+  "M": 597,
+  "N": 697,
+  "channels": 1,
+  "dtype": "uint8",
+  "itemsize": 1,
+  "volume_bytes": 416109,
+  "elements": 416109,
+  "min": 13,
+  "max": 123,
+  "mean": 29.5428,
+  "std": 15.4159,
+  "display_ranges": {
+    "imshow_default": [
+      0,
+      255
+    ],
+    "imshow_empty": [
+      13,
+      123
+    ]
+  },
+  "display_difference": {
+    "mean": 0.057742,
+    "max": 0.517647
+  },
+  "figures": {
+    "item5": "out/fig05_imshow.png",
+    "item6": "out/fig06_imshow_vs_imshow_empty.png",
+    "item8": "out/fig08_jpeg_comparison.png"
+  },
+  "jpeg": [
+    {
+      "quality": 25,
+      "path": "out/input_q25.jpg",
+      "file_size_bytes": 13172,
+      "psnr_db": 38.000705,
+      "mse": 10.304096,
+      "ssim": 0.938283
+    },
+    {
+      "quality": 5,
+      "path": "out/input_q5.jpg",
+      "file_size_bytes": 6119,
+      "psnr_db": 28.809493,
+      "mse": 85.532481,
+      "ssim": 0.71776
+    },
+    {
+      "quality": 0,
+      "path": "out/input_q0.jpg",
+      "file_size_bytes": 5449,
+      "psnr_db": 26.124844,
+      "mse": 158.706954,
+      "ssim": 0.712147
+    }
+  ]
+}

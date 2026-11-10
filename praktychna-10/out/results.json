@@ -1,0 +1,76 @@
+{
+  "parameters": {
+    "detector": "YuNet (face_detection_yunet_2023mar.onnx)",
+    "recognizer": "SFace (face_recognition_sface_2021dec.onnx)",
+    "similarity": "cosine",
+    "threshold": 0.363
+  },
+  "source": {
+    "mode": "image",
+    "path": "data/test_group.jpg",
+    "frame_count": 1,
+    "face_count": 2
+  },
+  "references": [
+    "Obama",
+    "Biden"
+  ],
+  "faces": [
+    {
+      "frame": 0,
+      "index": 0,
+      "box": {
+        "x": 234,
+        "y": 21,
+        "width": 150,
+        "height": 204
+      },
+      "similarities": {
+        "Obama": 0.7922396505555298,
+        "Biden": 0.13159570369225548
+      },
+      "best_match": "Obama",
+      "best_similarity": 0.7922396505555298,
+      "label": "Obama",
+      "recognized": true
+    },
+    {
+      "frame": 0,
+      "index": 1,
+      "box": {
+        "x": 790,
+        "y": 49,
+        "width": 147,
+        "height": 207
+      },
+      "similarities": {
+        "Obama": 0.12766413100962382,
+        "Biden": 0.9528994276290064
+      },
+      "best_match": "Biden",
+      "best_similarity": 0.9528994276290064,
+      "label": "Biden",
+      "recognized": true
+    }
+  ],
+  "summary": {
+    "face_count": 2,
+    "recognized_count": 2,
+    "unknown_count": 0,
+    "recognized_names": [
+      "Obama",
+      "Biden"
+    ]
+  },
+  "outputs": {
+    "annotated_image": "out/recognized_group.png",
+    "annotated_video": null,
+    "reference_crops": [
+      "out/reference_obama.png",
+      "out/reference_biden.png"
+    ],
+    "reference_gallery": "out/reference_gallery.png",
+    "similarity_matrix": "out/similarity_matrix.png",
+    "results_json": "out/results.json"
+  }
+}

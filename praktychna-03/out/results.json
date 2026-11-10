@@ -1,0 +1,216 @@
+{
+  "work": "praktychna-03",
+  "title": "Покращення зображення методами просторової фільтрації",
+  "input": {
+    "path": "data/input.png",
+    "width": 512,
+    "height": 512
+  },
+  "parameters": {
+    "seed_gaussian": 2026,
+    "seed_impulse": 2027,
+    "gaussian_noise": {
+      "mean": 0.0,
+      "variance": 0.01
+    },
+    "salt_pepper_density": 0.05,
+    "median_masks": [
+      "3x3",
+      "7x7"
+    ],
+    "average_masks": [
+      "3x3",
+      "5x5",
+      "7x7",
+      "9x9"
+    ],
+    "adaptive_smax": 7,
+    "rank_mask": "3x3",
+    "border_mode": "reflect"
+  },
+  "results": [
+    {
+      "id": "gaussian_noise",
+      "label": "Гаусівський шум",
+      "filter": "none",
+      "noise": "gaussian",
+      "variance": 0.01,
+      "figure": "out/02_gaussian_noisy.png",
+      "mse": 585.849487,
+      "psnr": 20.452943,
+      "ssim": 0.10389283
+    },
+    {
+      "id": "median_3x3",
+      "label": "Медіанний фільтр 3x3",
+      "filter": "median",
+      "noise": "gaussian",
+      "mask": "3x3",
+      "figure": "out/04_median_3x3.png",
+      "mse": 104.391659,
+      "psnr": 27.944146,
+      "ssim": 0.41952208
+    },
+    {
+      "id": "median_7x7",
+      "label": "Медіанний фільтр 7x7",
+      "filter": "median",
+      "noise": "gaussian",
+      "mask": "7x7",
+      "figure": "out/05_median_7x7.png",
+      "mse": 23.217216,
+      "psnr": 34.472702,
+      "ssim": 0.82262261
+    },
+    {
+      "id": "adaptive_median_smax7",
+      "label": "Адаптивна медіана, Smax = 7",
+      "filter": "adaptive_median",
+      "noise": "gaussian",
+      "smax": 7,
+      "figure": "out/06_adaptive_median_smax7.png",
+      "mse": 272.29023,
+      "psnr": 23.780483,
+      "ssim": 0.2036225
+    },
+    {
+      "id": "min_3x3",
+      "label": "Фільтр мінімуму 3x3",
+      "filter": "rank_min",
+      "noise": "gaussian",
+      "mask": "3x3",
+      "order": 1,
+      "figure": "out/07_min_filter_3x3.png",
+      "mse": 1366.03492,
+      "psnr": 16.776186,
+      "ssim": 0.22389695
+    },
+    {
+      "id": "max_3x3",
+      "label": "Фільтр максимуму 3x3",
+      "filter": "rank_max",
+      "noise": "gaussian",
+      "mask": "3x3",
+      "order": 9,
+      "figure": "out/08_max_filter_3x3.png",
+      "mse": 1566.970673,
+      "psnr": 16.180195,
+      "ssim": 0.27616204
+    },
+    {
+      "id": "average_3x3",
+      "label": "Усереднення 3x3",
+      "filter": "average",
+      "noise": "gaussian",
+      "mask": "3x3",
+      "figure": "out/09_average_3x3.png",
+      "mse": 71.871922,
+      "psnr": 29.565211,
+      "ssim": 0.52316178
+    },
+    {
+      "id": "average_5x5",
+      "label": "Усереднення 5x5",
+      "filter": "average",
+      "noise": "gaussian",
+      "mask": "5x5",
+      "figure": "out/10_average_5x5.png",
+      "mse": 31.915726,
+      "psnr": 33.090756,
+      "ssim": 0.76480552
+    },
+    {
+      "id": "average_7x7",
+      "label": "Усереднення 7x7",
+      "filter": "average",
+      "noise": "gaussian",
+      "mask": "7x7",
+      "figure": "out/11_average_7x7.png",
+      "mse": 21.422104,
+      "psnr": 34.822182,
+      "ssim": 0.86597908
+    },
+    {
+      "id": "average_9x9",
+      "label": "Усереднення 9x9",
+      "filter": "average",
+      "noise": "gaussian",
+      "mask": "9x9",
+      "figure": "out/12_average_9x9.png",
+      "mse": 17.660515,
+      "psnr": 35.66077,
+      "ssim": 0.90611148
+    },
+    {
+      "id": "salt_pepper_noise",
+      "label": "Шум «сіль і перець» 5 %",
+      "filter": "none",
+      "noise": "salt_pepper",
+      "density": 0.05,
+      "figure": "out/03_salt_pepper_noisy.png",
+      "mse": 1059.175533,
+      "psnr": 17.881124,
+      "ssim": 0.21463745
+    },
+    {
+      "id": "median_3x3",
+      "label": "Медіанний фільтр 3x3",
+      "filter": "median",
+      "noise": "salt_pepper",
+      "mask": "3x3",
+      "figure": "out/14_impulse_comparison.png",
+      "mse": 0.28931,
+      "psnr": 53.517162,
+      "ssim": 0.99836571
+    },
+    {
+      "id": "median_7x7",
+      "label": "Медіанний фільтр 7x7",
+      "filter": "median",
+      "noise": "salt_pepper",
+      "mask": "7x7",
+      "figure": "out/14_impulse_comparison.png",
+      "mse": 1.984421,
+      "psnr": 45.154466,
+      "ssim": 0.99221369
+    },
+    {
+      "id": "adaptive_median_smax7",
+      "label": "Адаптивна медіана, Smax = 7",
+      "filter": "adaptive_median",
+      "noise": "salt_pepper",
+      "smax": 7,
+      "figure": "out/14_impulse_comparison.png",
+      "mse": 0.111904,
+      "psnr": 57.642342,
+      "ssim": 0.99910532
+    },
+    {
+      "id": "average_3x3",
+      "label": "Усереднення 3x3",
+      "filter": "average",
+      "noise": "salt_pepper",
+      "mask": "3x3",
+      "figure": "out/14_impulse_comparison.png",
+      "mse": 128.972931,
+      "psnr": 27.025818,
+      "ssim": 0.46467304
+    }
+  ],
+  "figures": [
+    "out/01_original.png",
+    "out/02_gaussian_noisy.png",
+    "out/03_salt_pepper_noisy.png",
+    "out/04_median_3x3.png",
+    "out/05_median_7x7.png",
+    "out/06_adaptive_median_smax7.png",
+    "out/07_min_filter_3x3.png",
+    "out/08_max_filter_3x3.png",
+    "out/09_average_3x3.png",
+    "out/10_average_5x5.png",
+    "out/11_average_7x7.png",
+    "out/12_average_9x9.png",
+    "out/13_gaussian_comparison.png",
+    "out/14_impulse_comparison.png"
+  ]
+}

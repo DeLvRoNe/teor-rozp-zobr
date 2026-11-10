@@ -1,0 +1,5 @@
+﻿__pycache__/
+*.pyc
+.venv/
+praktychna-09/models/*.onnx
+praktychna-10/models/*.onnx

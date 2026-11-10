@@ -1,0 +1,234 @@
+{
+  "title": "вимір параметрів графічних об'єктів",
+  "parameters": {
+    "area_open_threshold": 40,
+    "connectivity": 8,
+    "background_connectivity": 4
+  },
+  "input": {
+    "file": "data/binary_shapes.png",
+    "shape": [
+      256,
+      256
+    ],
+    "foreground_pixels": 22093,
+    "background_pixels": 43443,
+    "components_8": 6,
+    "components_4": 6,
+    "holes": 2,
+    "hole_areas": [
+      1313,
+      441
+    ],
+    "euler_number": 4
+  },
+  "bwarea": {
+    "pixel_area": 22093,
+    "weighted_area": 22093.0,
+    "difference": 0.0,
+    "diagonal_pixels": 32,
+    "diagonal_weighted_area": 39.75,
+    "figure": "out/02_bwarea.png"
+  },
+  "bwareaopen": {
+    "threshold": 40,
+    "components_before": 6,
+    "components_after": 4,
+    "kept_labels": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "removed_labels": [
+      1,
+      4
+    ],
+    "removed_pixels": 62,
+    "mask": "out/bwareaopen.png",
+    "figure": "out/03_bwareaopen.png"
+  },
+  "bwlabel": {
+    "components_8": 6,
+    "components_4": 6,
+    "bwlabeln_2d": {
+      "components_8": 6,
+      "components_4": 6
+    },
+    "bwlabeln_3d": {
+      "volume_shape": [
+        26,
+        26,
+        26
+      ],
+      "components_6": 2,
+      "components_26": 1
+    },
+    "figures": [
+      "out/04_bwlabel.png",
+      "out/05_bwlabeln_3d.png"
+    ]
+  },
+  "bwdist": {
+    "metric": "euclidean",
+    "max_distance": 48.1041,
+    "mean_distance": 9.8109,
+    "cityblock_max": 68.0,
+    "chessboard_max": 37.0,
+    "figure": "out/06_bwdist.png"
+  },
+  "bweuler": {
+    "euler_number": 4,
+    "components": 6,
+    "holes": 2,
+    "figure": "out/07_bweuler.png"
+  },
+  "bwfill": {
+    "holes_before": 2,
+    "hole_areas": [
+      1313,
+      441
+    ],
+    "filled_pixels": 1754,
+    "holes_after": 0,
+    "mask": "out/bwfill.png",
+    "figure": "out/08_bwfill.png"
+  },
+  "bwmorph": {
+    "supported": [
+      "erode",
+      "dilate",
+      "open",
+      "close",
+      "remove",
+      "bridge",
+      "clean",
+      "fill",
+      "spur",
+      "majority",
+      "skel",
+      "thin"
+    ],
+    "counts": {
+      "erode": 20232,
+      "dilate": 23985,
+      "open": 22086,
+      "close": 22105,
+      "remove": 1466,
+      "bridge": 22093,
+      "clean": 22093,
+      "fill": 22093,
+      "spur": 22093,
+      "majority": 22088,
+      "skel": 513,
+      "thin": 494
+    },
+    "test_pattern": {
+      "mask": "out/bwmorph_test.png",
+      "operations": {
+        "bridge": {
+          "added": 13,
+          "removed": 0
+        },
+        "clean": {
+          "added": 0,
+          "removed": 1
+        },
+        "fill": {
+          "added": 1,
+          "removed": 0
+        },
+        "spur": {
+          "added": 0,
+          "removed": 2
+        },
+        "majority": {
+          "added": 12,
+          "removed": 33
+        }
+      }
+    },
+    "figures": [
+      "out/09_bwmorph_basic.png",
+      "out/10_bwmorph_skeleton.png",
+      "out/11_bwmorph_test_pattern.png"
+    ]
+  },
+  "bwperim": {
+    "pixels_8": 1861,
+    "pixels_4": 1466,
+    "masks": [
+      "out/bwperim8.png",
+      "out/bwperim4.png"
+    ],
+    "figure": "out/12_bwperim.png"
+  },
+  "bwselect": {
+    "seeds": [
+      {
+        "label": 3,
+        "seed_row": 183,
+        "seed_col": 96
+      },
+      {
+        "label": 6,
+        "seed_row": 189,
+        "seed_col": 208
+      }
+    ],
+    "selected_labels": [
+      3,
+      6
+    ],
+    "selected_area": 11845,
+    "mask": "out/bwselect.png",
+    "figure": "out/13_bwselect.png"
+  },
+  "bwulterode": {
+    "iterative_points": 49,
+    "iterative_components": 13,
+    "max_iterations": 36,
+    "edt_maxima_points": 72,
+    "mask": "out/bwulterode.png",
+    "figure": "out/14_bwulterode.png"
+  },
+  "regionprops": {
+    "csv": "out/regionprops.csv",
+    "count": 6,
+    "total_area": 22093,
+    "mean_area": 3682.1667,
+    "figures": [
+      "out/15_regionprops_overlay.png",
+      "out/16_regionprops_table.png"
+    ]
+  },
+  "figures": [
+    "out/01_input_binary.png",
+    "out/02_bwarea.png",
+    "out/03_bwareaopen.png",
+    "out/04_bwlabel.png",
+    "out/05_bwlabeln_3d.png",
+    "out/06_bwdist.png",
+    "out/07_bweuler.png",
+    "out/08_bwfill.png",
+    "out/09_bwmorph_basic.png",
+    "out/10_bwmorph_skeleton.png",
+    "out/11_bwmorph_test_pattern.png",
+    "out/12_bwperim.png",
+    "out/13_bwselect.png",
+    "out/14_bwulterode.png",
+    "out/15_regionprops_overlay.png",
+    "out/16_regionprops_table.png"
+  ],
+  "masks": [
+    "out/bwareaopen.png",
+    "out/bwfill.png",
+    "out/bwperim8.png",
+    "out/bwperim4.png",
+    "out/bwselect.png",
+    "out/bwulterode.png",
+    "out/skel.png",
+    "out/thin.png",
+    "out/bwmorph_test.png"
+  ]
+}

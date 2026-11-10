@@ -1,0 +1,292 @@
+{
+  "title": "Покращення зображення за допомогою еквалізації",
+  "seed": 42,
+  "input": {
+    "file": "data/input.png",
+    "stats": {
+      "shape": [
+        597,
+        697
+      ],
+      "min": 13,
+      "max": 123,
+      "mean": 29.5428,
+      "std": 15.4159,
+      "entropy": 4.988,
+      "percentile_5": 17.0,
+      "percentile_95": 62.0
+    }
+  },
+  "histogram": {
+    "bins": 256
+  },
+  "histeq": {
+    "levels": 256,
+    "output_file": "out/histeq.png",
+    "stats": {
+      "shape": [
+        597,
+        697
+      ],
+      "min": 0,
+      "max": 255,
+      "mean": 135.1758,
+      "std": 67.7682,
+      "entropy": 4.9248,
+      "percentile_5": 33.0,
+      "percentile_95": 243.0
+    }
+  },
+  "adapthisteq": {
+    "clip_limit": 0.01,
+    "nbins": 256,
+    "tiles": 8,
+    "output_file": "out/adapthisteq.png",
+    "stats": {
+      "shape": [
+        597,
+        697
+      ],
+      "min": 0,
+      "max": 255,
+      "mean": 48.1738,
+      "std": 45.3824,
+      "entropy": 6.434,
+      "percentile_5": 11.0,
+      "percentile_95": 144.0
+    }
+  },
+  "imadjust": {
+    "cases": [
+      {
+        "id": "a_gamma_1",
+        "gamma": 1.0,
+        "low_in": 0.0,
+        "high_in": 1.0,
+        "low_out": 0.0,
+        "high_out": 1.0,
+        "output_file": "out/imadjust_a_gamma_1.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 13,
+          "max": 123,
+          "mean": 29.5428,
+          "std": 15.4159,
+          "entropy": 4.988,
+          "percentile_5": 17.0,
+          "percentile_95": 62.0
+        },
+        "clipped_low_fraction": 0.0,
+        "clipped_high_fraction": 0.0,
+        "in_range_std_ratio": 1.0
+      },
+      {
+        "id": "a_gamma_0_5",
+        "gamma": 0.5,
+        "low_in": 0.0,
+        "high_in": 1.0,
+        "low_out": 0.0,
+        "high_out": 1.0,
+        "output_file": "out/imadjust_a_gamma_0_5.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 58,
+          "max": 177,
+          "mean": 84.4233,
+          "std": 20.2596,
+          "entropy": 4.9809,
+          "percentile_5": 66.0,
+          "percentile_95": 126.0
+        },
+        "clipped_low_fraction": 0.0,
+        "clipped_high_fraction": 0.0,
+        "in_range_std_ratio": 1.3142
+      },
+      {
+        "id": "a_gamma_2_1",
+        "gamma": 2.1,
+        "low_in": 0.0,
+        "high_in": 1.0,
+        "low_out": 0.0,
+        "high_out": 1.0,
+        "output_file": "out/imadjust_a_gamma_2_1.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 0,
+          "max": 55,
+          "mean": 3.6067,
+          "std": 4.707,
+          "entropy": 2.7784,
+          "percentile_5": 1.0,
+          "percentile_95": 13.0
+        },
+        "clipped_low_fraction": 0.0,
+        "clipped_high_fraction": 0.0,
+        "in_range_std_ratio": 0.3053
+      },
+      {
+        "id": "b",
+        "gamma": 1.0,
+        "low_in": 0.2,
+        "high_in": 0.6,
+        "low_out": 0.0,
+        "high_out": 1.0,
+        "output_file": "out/imadjust_b.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 0,
+          "max": 180,
+          "mean": 3.4489,
+          "std": 13.9233,
+          "entropy": 1.0068,
+          "percentile_5": 0.0,
+          "percentile_95": 27.0
+        },
+        "clipped_low_fraction": 0.890173,
+        "clipped_high_fraction": 0.0,
+        "in_range_std_ratio": 2.5094
+      },
+      {
+        "id": "c",
+        "gamma": 1.0,
+        "low_in": 0.0,
+        "high_in": 1.0,
+        "low_out": 0.2,
+        "high_out": 0.6,
+        "output_file": "out/imadjust_c.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 56,
+          "max": 100,
+          "mean": 62.8513,
+          "std": 6.1467,
+          "entropy": 3.7395,
+          "percentile_5": 58.0,
+          "percentile_95": 76.0
+        },
+        "clipped_low_fraction": 0.0,
+        "clipped_high_fraction": 0.0,
+        "in_range_std_ratio": 0.3987
+      }
+    ]
+  },
+  "noise": {
+    "cases": [
+      {
+        "id": "gaussian",
+        "parameters": {
+          "mean": 0.0,
+          "variance": 0.01
+        },
+        "output_file": "out/noise_gaussian.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 0,
+          "max": 206,
+          "mean": 31.7929,
+          "std": 26.3682,
+          "entropy": 6.0845,
+          "percentile_5": 0.0,
+          "percentile_95": 80.0
+        },
+        "changed_fraction": 0.984228,
+        "psnr_db": 21.1327
+      },
+      {
+        "id": "salt_pepper",
+        "parameters": {
+          "density": 0.05
+        },
+        "output_file": "out/noise_salt_pepper.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 0,
+          "max": 255,
+          "mean": 34.4215,
+          "std": 38.5936,
+          "entropy": 5.0754,
+          "percentile_5": 17.0,
+          "percentile_95": 69.0
+        },
+        "changed_fraction": 0.049838,
+        "psnr_db": 16.9926
+      },
+      {
+        "id": "poisson",
+        "parameters": {
+          "distribution": "poisson"
+        },
+        "output_file": "out/noise_poisson.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 2,
+          "max": 149,
+          "mean": 29.5441,
+          "std": 16.3556,
+          "entropy": 5.6755,
+          "percentile_5": 13.0,
+          "percentile_95": 63.0
+        },
+        "changed_fraction": 0.921679,
+        "psnr_db": 33.4159
+      },
+      {
+        "id": "speckle",
+        "parameters": {
+          "variance": 0.04
+        },
+        "output_file": "out/noise_speckle.png",
+        "stats": {
+          "shape": [
+            597,
+            697
+          ],
+          "min": 9,
+          "max": 159,
+          "mean": 29.5413,
+          "std": 16.8103,
+          "entropy": 5.5899,
+          "percentile_5": 13.0,
+          "percentile_95": 64.0
+        },
+        "changed_fraction": 0.94035,
+        "psnr_db": 31.6349
+      }
+    ]
+  },
+  "figures": [
+    "out/01_input_image.png",
+    "out/02_input_histogram.png",
+    "out/03_histeq_result.png",
+    "out/04_imadjust_gamma.png",
+    "out/05_imadjust_transfer_curves.png",
+    "out/06_imadjust_input_range.png",
+    "out/07_imadjust_output_range.png",
+    "out/08_histeq_vs_adapthisteq.png",
+    "out/09_noise_types.png"
+  ]
+}

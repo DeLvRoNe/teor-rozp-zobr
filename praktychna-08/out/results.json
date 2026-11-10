@@ -1,0 +1,87 @@
+{
+  "task": "praktychna-08",
+  "title": "Пошук кіл і сегментація кольорового зображення",
+  "inputs": {
+    "circles": "data/circles.png",
+    "segmentation": "data/segmentation.png"
+  },
+  "parameters": {
+    "hough": {
+      "dp": 1.2,
+      "minDist": 20,
+      "param1": 120,
+      "param2": 45,
+      "minRadius": 10,
+      "maxRadius": 60,
+      "blur_kernel": 5,
+      "blur_sigma": 1.5
+    },
+    "kmeans": {
+      "k": 3,
+      "attempts": 10,
+      "max_iter": 100,
+      "epsilon": 0.2,
+      "seed": 42
+    }
+  },
+  "circles": {
+    "count": 20,
+    "radius_min": 21.639999389648438,
+    "radius_max": 25.360000610351562,
+    "radius_mean": 23.39800043106079,
+    "radius_std": 0.8462126891980887,
+    "radius_median": 23.200000762939453
+  },
+  "clusters": {
+    "k": 3,
+    "compactness": 8416181.832133276,
+    "selected": 2,
+    "items": [
+      {
+        "cluster": 1,
+        "center_a": 0.7432056069374084,
+        "center_b": -5.286816596984863,
+        "pixel_count": 390806,
+        "pixel_share": 0.79177201854193
+      },
+      {
+        "cluster": 2,
+        "center_a": 5.370368480682373,
+        "center_b": 23.30939483642578,
+        "pixel_count": 52284,
+        "pixel_share": 0.10592725858212584
+      },
+      {
+        "cluster": 3,
+        "center_a": -6.15120267868042,
+        "center_b": 15.262654304504395,
+        "pixel_count": 50494,
+        "pixel_share": 0.10230072287594412
+      }
+    ]
+  },
+  "outputs": {
+    "figures": {
+      "circles_original": "out/circles_original.png",
+      "circles_gray": "out/circles_gray.png",
+      "circles_preprocessed": "out/circles_preprocessed.png",
+      "circles_annotated": "out/circles_annotated.png",
+      "circles_hough_overlay": "out/circles_hough_overlay.png",
+      "circles_center_radius": "out/circles_center_radius.png",
+      "circles_sensitivity": "out/circles_sensitivity.png",
+      "segmentation_original": "out/segmentation_original.png",
+      "segmentation_lab_scatter": "out/segmentation_lab_scatter.png",
+      "segmentation_labels": "out/segmentation_labels.png",
+      "segmentation_clusters": "out/segmentation_clusters.png",
+      "segmentation_selected_cluster": "out/segmentation_selected_cluster.png",
+      "summary_metrics": "out/summary_metrics.png",
+      "segmentation_cluster_1": "out/segmentation_cluster_1.png",
+      "segmentation_cluster_2": "out/segmentation_cluster_2.png",
+      "segmentation_cluster_3": "out/segmentation_cluster_3.png"
+    },
+    "tables": {
+      "circles_csv": "out/circles.csv"
+    },
+    "results_json": "out/results.json"
+  }
+}

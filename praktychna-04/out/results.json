@@ -1,0 +1,577 @@
+{
+  "work": "praktychna-04",
+  "title": "Практична робота 4. Обробка зображень цифровими фільтрами",
+  "input": {
+    "path": "data/input.png",
+    "stats": {
+      "shape": [
+        597,
+        697
+      ],
+      "min": 13.0,
+      "max": 123.0,
+      "mean": 29.54278326111668,
+      "std": 15.41585892745281
+    },
+    "display_window": [
+      17.0,
+      72.0
+    ]
+  },
+  "checkerboard": {
+    "path": "data/checkerboard.png",
+    "stats": {
+      "shape": [
+        256,
+        256
+      ],
+      "min": 0.0,
+      "max": 255.0,
+      "mean": 127.5,
+      "std": 127.5
+    }
+  },
+  "imfilter": {
+    "average_kernel": {
+      "shape": [
+        5,
+        5
+      ],
+      "sum": 1.0,
+      "min": 0.04,
+      "max": 0.04,
+      "nonzero": 25
+    },
+    "asymmetric_kernel": {
+      "shape": [
+        3,
+        3
+      ],
+      "sum": 6.0,
+      "min": 0.0,
+      "max": 3.0,
+      "nonzero": 3
+    },
+    "boundary_comparison": {
+      "image": "data/checkerboard.png",
+      "kernel": "average 5x5",
+      "filter_mode": "corr",
+      "size": "same",
+      "modes": {
+        "zero": {
+          "image": "out/images/checkerboard_zero.png",
+          "shape": [
+            256,
+            256
+          ],
+          "mean": 126.30746459960938,
+          "border_mae": 38.460826771653515,
+          "global_mae": 1.1925109863281236
+        },
+        "replicate": {
+          "image": "out/images/checkerboard_replicate.png",
+          "shape": [
+            256,
+            256
+          ],
+          "mean": 127.5,
+          "border_mae": 0.0,
+          "global_mae": 0.0
+        },
+        "symmetric": {
+          "image": "out/images/checkerboard_symmetric.png",
+          "shape": [
+            256,
+            256
+          ],
+          "mean": 127.5,
+          "border_mae": 0.0,
+          "global_mae": 0.0
+        },
+        "circular": {
+          "image": "out/images/checkerboard_circular.png",
+          "shape": [
+            256,
+            256
+          ],
+          "mean": 127.5,
+          "border_mae": 71.6811023622047,
+          "global_mae": 2.222534179687499
+        }
+      }
+    },
+    "correlation_vs_convolution": {
+      "kernel": {
+        "shape": [
+          3,
+          3
+        ],
+        "sum": 6.0,
+        "min": 0.0,
+        "max": 3.0,
+        "nonzero": 3
+      },
+      "correlation_image": "out/images/corr_asymmetric.png",
+      "convolution_image": "out/images/conv_asymmetric.png",
+      "max_abs_difference": 172.0,
+      "mean_abs_difference": 6.020162986140651
+    },
+    "same_vs_full": {
+      "kernel": "average 5x5",
+      "input_shape": [
+        597,
+        697
+      ],
+      "same_shape": [
+        597,
+        697
+      ],
+      "full_shape": [
+        601,
+        701
+      ],
+      "same_image": "out/images/average_same.png",
+      "full_image": "out/images/average_full.png"
+    }
+  },
+  "fspecial": {
+    "average": {
+      "label": "Усереднення",
+      "call": "fspecial('average', 5)",
+      "params": {
+        "size": [
+          5,
+          5
+        ]
+      },
+      "kernel": {
+        "shape": [
+          5,
+          5
+        ],
+        "sum": 1.0,
+        "min": 0.04,
+        "max": 0.04,
+        "nonzero": 25
+      },
+      "image": "out/images/fspecial_average.png",
+      "display": "обрізано до uint8 0...255",
+      "metrics_vs_input": {
+        "mse": 12.090007666260522,
+        "psnr": 37.30653784621399,
+        "ssim": 0.9359004774985581,
+        "edge_correlation": 0.805362239422715
+      }
+    },
+    "disk": {
+      "label": "Кругове усереднення",
+      "call": "fspecial('disk', 5)",
+      "params": {
+        "radius": 5
+      },
+      "kernel": {
+        "shape": [
+          11,
+          11
+        ],
+        "sum": 1.0,
+        "min": 0.0,
+        "max": 0.012345679012345678,
+        "nonzero": 81
+      },
+      "image": "out/images/fspecial_disk.png",
+      "display": "обрізано до uint8 0...255",
+      "metrics_vs_input": {
+        "mse": 27.75523720948117,
+        "psnr": 33.69735417496608,
+        "ssim": 0.8635866065379726,
+        "edge_correlation": 0.5754817982955912
+      }
+    },
+    "gaussian": {
+      "label": "Гауссів фільтр",
+      "call": "fspecial('gaussian', 9, 0.8)",
+      "params": {
+        "size": [
+          9,
+          9
+        ],
+        "sigma": 0.8
+      },
+      "kernel": {
+        "shape": [
+          9,
+          9
+        ],
+        "sum": 1.0,
+        "min": 3.4536032619442716e-12,
+        "max": 0.2486763552275639,
+        "nonzero": 81
+      },
+      "image": "out/images/fspecial_gaussian.png",
+      "display": "обрізано до uint8 0...255",
+      "metrics_vs_input": {
+        "mse": 3.076431896450209,
+        "psnr": 43.25033055395836,
+        "ssim": 0.9838566233992134,
+        "edge_correlation": 0.9665291149665457
+      }
+    },
+    "laplacian": {
+      "label": "Лапласіан",
+      "call": "fspecial('laplacian', 0.2)",
+      "params": {
+        "alpha": 0.2
+      },
+      "kernel": {
+        "shape": [
+          3,
+          3
+        ],
+        "sum": 1.6653345369377348e-16,
+        "min": -3.3333333333333335,
+        "max": 0.6666666666666667,
+        "nonzero": 9
+      },
+      "image": "out/images/fspecial_laplacian.png",
+      "display": "знакозмінний відгук, двобічна шкала"
+    },
+    "log": {
+      "label": "Лапласіан-Гаус",
+      "call": "fspecial('log', 5, 0.5)",
+      "params": {
+        "size": [
+          5,
+          5
+        ],
+        "sigma": 0.5
+      },
+      "kernel": {
+        "shape": [
+          5,
+          5
+        ],
+        "sum": -6.453171330633722e-16,
+        "min": -4.904764009283149,
+        "max": 0.7146325331606618,
+        "nonzero": 25
+      },
+      "image": "out/images/fspecial_log.png",
+      "display": "знакозмінний відгук, двобічна шкала"
+    },
+    "sobel": {
+      "label": "Собель",
+      "call": "fspecial('sobel')",
+      "params": {},
+      "kernel": {
+        "shape": [
+          3,
+          3
+        ],
+        "sum": 0.0,
+        "min": -2.0,
+        "max": 2.0,
+        "nonzero": 6
+      },
+      "image": "out/images/fspecial_sobel.png",
+      "display": "знакозмінний відгук, двобічна шкала"
+    },
+    "prewitt": {
+      "label": "Превитт",
+      "call": "fspecial('prewitt')",
+      "params": {},
+      "kernel": {
+        "shape": [
+          3,
+          3
+        ],
+        "sum": 0.0,
+        "min": -1.0,
+        "max": 1.0,
+        "nonzero": 6
+      },
+      "image": "out/images/fspecial_prewitt.png",
+      "display": "знакозмінний відгук, двобічна шкала"
+    },
+    "unsharp": {
+      "label": "Нерізке маскування",
+      "call": "fspecial('unsharp', 0.2)",
+      "params": {
+        "alpha": 0.2
+      },
+      "kernel": {
+        "shape": [
+          3,
+          3
+        ],
+        "sum": 0.9999999999999998,
+        "min": -0.6666666666666667,
+        "max": 4.333333333333334,
+        "nonzero": 9
+      },
+      "image": "out/images/fspecial_unsharp.png",
+      "display": "обрізано до uint8 0...255",
+      "metrics_vs_input": {
+        "mse": 44.51002742069986,
+        "psnr": 31.646224990352874,
+        "ssim": 0.8823638649658606,
+        "edge_correlation": 0.9361756453563482
+      }
+    }
+  },
+  "custom_filters": {
+    "sharpening": {
+      "formula": "delta + 0.5 * laplacian5",
+      "params": {
+        "size": [
+          5,
+          5
+        ],
+        "strength": 0.5
+      },
+      "kernel": {
+        "shape": [
+          5,
+          5
+        ],
+        "sum": 1.0,
+        "min": -1.0,
+        "max": 9.0,
+        "nonzero": 13
+      },
+      "image": "out/images/custom_sharpening.png",
+      "detail_energy_before": 3.5165465458970306,
+      "detail_energy_after": 27.80402891229622,
+      "detail_energy_ratio": 7.9066290035992495
+    },
+    "gaussian_11x11_sigma2": {
+      "formula": "exp(-(x² + y²) / (2·σ²)), нормовано до суми 1",
+      "params": {
+        "size": [
+          11,
+          11
+        ],
+        "sigma": 2.0
+      },
+      "kernel": {
+        "shape": [
+          11,
+          11
+        ],
+        "sum": 1.0,
+        "min": 7.765538510469276e-05,
+        "max": 0.04022648538878979,
+        "nonzero": 121
+      },
+      "image": "out/images/custom_gaussian.png",
+      "metrics_vs_input": {
+        "mse": 16.337704784083016,
+        "psnr": 35.99889316604338,
+        "ssim": 0.9165890359618917,
+        "edge_correlation": 0.7690216302047881
+      }
+    }
+  },
+  "noise_experiments": {
+    "seed": 20241104,
+    "clean": "data/input.png",
+    "types": {
+      "gaussian": {
+        "label": "Гауссів шум",
+        "parameters": {
+          "sigma": 18.0
+        },
+        "noisy": {
+          "image": "out/images/noisy_gaussian.png",
+          "mse": 277.27242140881356,
+          "psnr": 23.70173685756699,
+          "ssim": 0.27278381881935,
+          "edge_correlation": 0.377053652632722
+        },
+        "filters": {
+          "average": {
+            "type": "linear",
+            "label": "усереднення 5×5",
+            "parameters": {
+              "kernel": "average 5x5",
+              "boundary": "replicate"
+            },
+            "image": "out/images/denoise_gaussian_average.png",
+            "mse": 24.696440115450518,
+            "psnr": 34.20446004759582,
+            "ssim": 0.8482391779120623,
+            "edge_correlation": 0.6486792726291928,
+            "psnr_gain_vs_noisy": 10.502723190028835
+          },
+          "gaussian": {
+            "type": "linear",
+            "label": "гауссів 9×9, σ = 0.8",
+            "parameters": {
+              "kernel": "gaussian 9x9",
+              "sigma": 0.8,
+              "boundary": "replicate"
+            },
+            "image": "out/images/denoise_gaussian_gaussian.png",
+            "mse": 39.14403918204125,
+            "psnr": 32.20414723399705,
+            "ssim": 0.7234011791514208,
+            "edge_correlation": 0.6034426585338888,
+            "psnr_gain_vs_noisy": 8.50241037643006
+          },
+          "median": {
+            "type": "nonlinear",
+            "label": "медіанний 5×5",
+            "parameters": {
+              "size": 5,
+              "boundary": "nearest"
+            },
+            "image": "out/images/denoise_gaussian_median.png",
+            "mse": 32.09866885840008,
+            "psnr": 33.06593338414392,
+            "ssim": 0.7868755843168145,
+            "edge_correlation": 0.5432719243440389,
+            "psnr_gain_vs_noisy": 9.36419652657693
+          },
+          "bilateral": {
+            "type": "nonlinear",
+            "label": "білатеральний",
+            "parameters": {
+              "win_size": 5,
+              "sigma_color": 0.12,
+              "sigma_spatial": 2.0,
+              "mode": "edge"
+            },
+            "image": "out/images/denoise_gaussian_bilateral.png",
+            "mse": 37.65648904493774,
+            "psnr": 32.37240535348985,
+            "ssim": 0.7416774975496976,
+            "edge_correlation": 0.6779394605731099,
+            "psnr_gain_vs_noisy": 8.670668495922865
+          }
+        },
+        "best_psnr_filter": "average",
+        "best_psnr_value": 34.20446004759582
+      },
+      "salt_pepper": {
+        "label": "Шум «сіль і перець»",
+        "parameters": {
+          "amount": 0.05
+        },
+        "noisy": {
+          "image": "out/images/noisy_salt_pepper.png",
+          "mse": 1303.5019357908625,
+          "psnr": 16.979686804056296,
+          "ssim": 0.2975591469607061,
+          "edge_correlation": 0.13588143493815621
+        },
+        "filters": {
+          "average": {
+            "type": "linear",
+            "label": "усереднення 5×5",
+            "parameters": {
+              "kernel": "average 5x5",
+              "boundary": "replicate"
+            },
+            "image": "out/images/denoise_salt_pepper_average.png",
+            "mse": 89.23307354563347,
+            "psnr": 28.625545087771297,
+            "ssim": 0.6527648732985016,
+            "edge_correlation": 0.3152388924294367,
+            "psnr_gain_vs_noisy": 11.645858283715
+          },
+          "gaussian": {
+            "type": "linear",
+            "label": "гауссів 9×9, σ = 0.8",
+            "parameters": {
+              "kernel": "gaussian 9x9",
+              "sigma": 0.8,
+              "boundary": "replicate"
+            },
+            "image": "out/images/denoise_salt_pepper_gaussian.png",
+            "mse": 189.47483471878763,
+            "psnr": 25.35528823970237,
+            "ssim": 0.4833287803457637,
+            "edge_correlation": 0.21417662453671404,
+            "psnr_gain_vs_noisy": 8.375601435646075
+          },
+          "median": {
+            "type": "nonlinear",
+            "label": "медіанний 5×5",
+            "parameters": {
+              "size": 5,
+              "boundary": "nearest"
+            },
+            "image": "out/images/denoise_salt_pepper_median.png",
+            "mse": 10.788908675371117,
+            "psnr": 37.80102843917567,
+            "ssim": 0.9457130192762712,
+            "edge_correlation": 0.8628946088108332,
+            "psnr_gain_vs_noisy": 20.82134163511937
+          },
+          "bilateral": {
+            "type": "nonlinear",
+            "label": "білатеральний",
+            "parameters": {
+              "win_size": 5,
+              "sigma_color": 0.12,
+              "sigma_spatial": 2.0,
+              "mode": "edge"
+            },
+            "image": "out/images/denoise_salt_pepper_bilateral.png",
+            "mse": 1287.73801816351,
+            "psnr": 17.032528432158408,
+            "ssim": 0.3147680551839186,
+            "edge_correlation": 0.07048122771434705,
+            "psnr_gain_vs_noisy": 0.05284162810211157
+          }
+        },
+        "best_psnr_filter": "median",
+        "best_psnr_value": 37.80102843917567
+      }
+    }
+  },
+  "outputs": {
+    "figures": [
+      "out/fig01_input_image.png",
+      "out/fig02_imfilter_boundary_modes.png",
+      "out/fig03_correlation_vs_convolution.png",
+      "out/fig04_same_vs_full.png",
+      "out/fig05_fspecial_kernels.png",
+      "out/fig06_fspecial_results.png",
+      "out/fig07_custom_filters.png",
+      "out/fig08_gaussian_noise_comparison.png",
+      "out/fig09_salt_pepper_noise_comparison.png",
+      "out/fig10_metrics_comparison.png"
+    ],
+    "images": [
+      "out/images/average_full.png",
+      "out/images/average_same.png",
+      "out/images/checkerboard_circular.png",
+      "out/images/checkerboard_replicate.png",
+      "out/images/checkerboard_symmetric.png",
+      "out/images/checkerboard_zero.png",
+      "out/images/conv_asymmetric.png",
+      "out/images/corr_asymmetric.png",
+      "out/images/custom_gaussian.png",
+      "out/images/custom_sharpening.png",
+      "out/images/denoise_gaussian_average.png",
+      "out/images/denoise_gaussian_bilateral.png",
+      "out/images/denoise_gaussian_gaussian.png",
+      "out/images/denoise_gaussian_median.png",
+      "out/images/denoise_salt_pepper_average.png",
+      "out/images/denoise_salt_pepper_bilateral.png",
+      "out/images/denoise_salt_pepper_gaussian.png",
+      "out/images/denoise_salt_pepper_median.png",
+      "out/images/fspecial_average.png",
+      "out/images/fspecial_disk.png",
+      "out/images/fspecial_gaussian.png",
+      "out/images/fspecial_laplacian.png",
+      "out/images/fspecial_log.png",
+      "out/images/fspecial_prewitt.png",
+      "out/images/fspecial_sobel.png",
+      "out/images/fspecial_unsharp.png",
+      "out/images/noisy_gaussian.png",
+      "out/images/noisy_salt_pepper.png"
+    ]
+  }
+}
